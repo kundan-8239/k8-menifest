@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy-app-3-config
+  namespace: dummy-dev
+data:
+  APP_BASE_URL: https://dummy.dev.wellsky.cloud
+  OKTA_BASE_URL: https://wellsky.okta.com
+  OKTA_GITHUB_USERS_GROUP_ID: 0oa5j1v2xgkX3Y4QK5d7
+  OKTA_ORG_USERS_GROUP_ID: 0oa5j1v2xgkX3Y4QK5d7

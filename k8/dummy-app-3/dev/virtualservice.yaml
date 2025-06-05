@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: dummy-app-3-vs
+  namespace: dummy-dev
+spec:
+  hosts:
+    - dummy-app-1.dev.wellsky.cloud
+  gateways:
+    - plateng-dev-gke-01-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: dummy-app-3.dummy-dev.svc.cluster.local
+            port:
+              number: 80
