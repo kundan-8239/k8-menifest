@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-app-4
+  namespace: dummy-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy-app-4
+  template:
+    metadata:
+      labels:
+        app: dummy-app-4
+    spec:
+      serviceAccountName: external-secrets-sa
+      containers:
+        - name: dummy-app-4
+          image: >-
+            us-east4-docker.pkg.dev/plateng-dev-app-wsky/idp-dev/dummy-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7007
+          envFrom:
+            - configMapRef:
+                name: dummy-app-4-config
+            - secretRef:
+                name: dummy-secrets
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 512Mi
